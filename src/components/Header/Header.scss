@@ -1,0 +1,74 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/globals" as *;
+
+.header {
+  background-color: $bg-bloom;
+  padding: 1rem;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+
+    @include tablet {
+      flex-direction: row;
+      height: 11.625rem;
+      padding: 1rem 2rem;
+    }
+
+    @include desktop {
+      align-items: center;
+      margin: 0 auto;
+      max-width: 63.75rem;
+      padding: 0;
+    }
+  }
+
+  &__logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &--icon {
+      font-family: "Titillium Web", sans-serif;
+      height: 3rem;
+
+      @include tablet {
+        height: 6rem;
+      }
+    }
+
+    &--text {
+      color: $bloom-lila;
+      font-family: "Bungee", serif;
+      font-weight: 500;
+      font-size: 26px;
+
+      @include tablet {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+.account {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    height: 3rem;
+  }
+
+  &__user-name {
+    display: none;
+
+    @include tablet {
+      display: initial;
+      text-decoration: none;
+      color: $bloom-lila;
+      font-size: 1.5rem;
+    }
+  }
+}

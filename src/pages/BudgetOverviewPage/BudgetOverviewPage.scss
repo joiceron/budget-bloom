@@ -1,0 +1,45 @@
+@use "../../styles/partials/globals" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.view {
+  display: none;
+  padding: 1rem 0;
+  @include tablet {
+    display: flex;
+  }
+
+  &__button {
+    border: 1px solid $bloom-lila;
+    padding: 0.5rem;
+    background-color: $c-white;
+
+    &:hover {
+      background-color: $bg-bloom;
+    }
+
+    &:focus{
+      background-color: $bg-bloom;
+    }
+
+    &--left {
+      border-radius: 20px 0 0 20px;
+      padding-left: 1rem;
+    }
+
+    &--rigth {
+      border-radius: 0 20px 20px 0;
+      padding-right: 1rem;
+    }
+  }
+}
+
+.calendar {
+  display: flex;
+  justify-content: flex-end;
+  // width: 80vw;
+  border: 2px solid $bloom-pink;
+  &__space{
+    
+  }
+}
