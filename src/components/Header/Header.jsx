@@ -13,7 +13,7 @@ export default function Header() {
           <span className="header__logo--text">Budget Bloom</span>
         </NavLink>
         <NavLink to={"/account"} className="account">
-          <p className="account__user-name">Joice</p>
+          <p className="account__user-name">Joice C.</p>
           <img
             src={gear}
             alt="gear icon for going to account settings"
