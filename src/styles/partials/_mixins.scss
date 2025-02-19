@@ -18,3 +18,21 @@
     padding: 0 2rem;
   }
 }
+
+@mixin row-cells {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.6rem 0;
+}
+
+
+@mixin title-cells {
+  justify-content: end;
+  justify-self: end;
+  width: 15vw;
+}
+
+@mixin cells {
+
+  padding: 0.625rem;
+}

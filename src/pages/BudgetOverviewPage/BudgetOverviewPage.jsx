@@ -60,9 +60,9 @@ export default function BudgetOverviewPage({ baseUrl }) {
       <BudgetOverview numMonths={numMonths} type={"income"} />
       <BudgetOverview numMonths={numMonths} type={"outcome"} />
       <BudgetOverview numMonths={numMonths} type={"balance"} />
-      <div>
-        <button>Clear</button>
-        <button>Calculate</button>
+      <div className="acctions">
+        <button className="acctions__button view__button">Clear</button>
+        <button className="acctions__button view__button">Calculate</button>
       </div>
     </>
   );

@@ -3,10 +3,11 @@
 @use "../../styles/partials/variables" as *;
 
 .view {
-  display: none;
-  padding: 1rem 0;
+  // display: none;
+  margin-top: 1rem;
   @include tablet {
     display: flex;
+    justify-content: flex-end;
   }
 
   &__button {
@@ -18,7 +19,7 @@
       background-color: $bg-bloom;
     }
 
-    &:focus{
+    &:focus {
       background-color: $bg-bloom;
     }
 
@@ -35,11 +36,31 @@
 }
 
 .calendar {
+  @include row-cells;
+  margin-top: 1rem;
+  border-top: 2px solid $bloom-pink;
+  border-bottom: 2px solid $bloom-pink;
+  background-color: $c-pink;
+  padding: 0 1rem;
+  &__space {
+    @include title-cells;
+  }
+
+  &__month {
+    @include cells;
+  }
+}
+
+.acctions {
   display: flex;
-  justify-content: flex-end;
-  // width: 80vw;
-  border: 2px solid $bloom-pink;
-  &__space{
-    
+  justify-content: space-between;
+  gap: 2vw;
+  margin-bottom: 2rem;
+  &__button {
+    width: 100%;
+    background-color: $c-pink;
+    @include tablet {
+      width: 10vw;
+    }
   }
 }

@@ -1,0 +1,37 @@
+@use "../../styles/partials/globals" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.balance-row {
+  @include row-cells;
+
+  &__title {
+    @include title-cells;
+    display: flex;
+    align-items: center;
+
+    &--button {
+      border: 1px solid $c-grey;
+      border-radius: 1px;
+      margin-left: 0.5rem;
+      height: 1.875rem;
+      width: 1.875rem;
+      font-size: 0.75rem;
+      padding: 0;
+      color: $bloom-black;
+    }
+
+    &--emoji {
+      font-size: 18px;
+      background-color: $c-white;
+      margin-right: 0.8rem;
+    }
+  }
+  &__cell {
+    @include cells;
+    border-radius: 10px;
+    width: 6vw;
+    border: none;
+    background-color: $c-white;
+  }
+}
