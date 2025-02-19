@@ -17,7 +17,7 @@ export default function BudgetOverviewPage({ baseUrl }) {
     "Dec",
     "Jan",
   ];
-  const [numMonths, setNumMonths] = useState(3);
+  const [numMonths, setNumMonths] = useState(12);
   const toggleTrimestral = () => {
     setNumMonths(3);
   };
