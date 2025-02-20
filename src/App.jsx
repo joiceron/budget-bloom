@@ -7,14 +7,13 @@ import Footer from "./components/Footer/Footer";
 import "./App.scss";
 
 function App() {
-  const baseUrl = import.meta.env.VITE_APP_URL;
 
   return (
     <BrowserRouter>
       <Header />
       <main className="main">
         <Routes>
-          <Route path="/" element={<BudgetOverviewPage baseUrl={baseUrl} />} />
+          <Route path="/" element={<BudgetOverviewPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

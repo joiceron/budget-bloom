@@ -2,8 +2,9 @@ import { useState } from "react";
 import "./BudgetOverviewPage.scss";
 import BudgetOverview from "../../components/BudgetCard/BudgetCard";
 
-export default function BudgetOverviewPage({ baseUrl }) {
+export default function BudgetOverviewPage() {
   const months = [
+    "Jan",
     "Feb",
     "Mar",
     "Apr",
@@ -15,7 +16,6 @@ export default function BudgetOverviewPage({ baseUrl }) {
     "Oct",
     "Nov",
     "Dec",
-    "Jan",
   ];
   const [numMonths, setNumMonths] = useState(12);
   const toggleTrimestral = () => {

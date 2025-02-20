@@ -5,8 +5,24 @@ import axios from "axios";
 import InputTags from "../InputTags/InputTags";
 
 export default function BudgetOverview({ numMonths, type }) {
+  const baseUrl = import.meta.env.VITE_APP_URL;
+
   let numTags = Array(Number(numMonths)).fill("+");
   const [isfix, setIsFix] = useState(false);
+  const [balance, setBalance] = useState([]);
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}budget`);
+        setBalance(response.data.slice(0, numMonths));
+      } catch (error) {
+        console.error("Error fetching budget:", error);
+      }
+    };
+
+    fetchBalance();
+  }, [baseUrl, numMonths]);
 
   let content;
   if (type === "income") {
@@ -38,9 +54,9 @@ export default function BudgetOverview({ numMonths, type }) {
       {type === "income" ? (
         <div className="table-row table-row--borderless">
           <h3 className="table-row__title">Previous balance</h3>
-          {numTags.map((_, index) => (
+          {balance.map((_, index) => (
             <p className="table-row__cell" key={index}>
-              900
+              {balance[index].preview_balance}
             </p>
           ))}
         </div>
@@ -50,9 +66,13 @@ export default function BudgetOverview({ numMonths, type }) {
       {content}
       <div className="table-row">
         <h3 className="table-row__title">{`Total ${type}`}</h3>
-        {numTags.map((_, index) => (
+        {balance.map((_, index) => (
           <p className="table-row__cell" key={index}>
-            800
+            {type == "income"
+              ? balance[index].total_income
+              : type == "outcome"
+              ? balance[index].total_outcome
+              : balance[index].total_balance}
           </p>
         ))}
       </div>
