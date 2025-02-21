@@ -24,15 +24,18 @@
     &--emoji {
       font-size: 18px;
       background-color: $c-white;
-      margin-right: 0.8rem;
     }
   }
   
   &__cell {
     @include cells;
-    border-radius: 10px;
-    width: 6vw;
+    border-radius: 6px;
     border: none;
+    outline: none; 
     background-color: $c-white;
+    
+    &:focus{
+      border: 3px solid $bloom-pink;
+    }
   }
 }

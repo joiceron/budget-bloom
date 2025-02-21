@@ -1,15 +1,11 @@
 import "./BudgetCard.scss";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import axios from "axios";
 import InputTags from "../InputTags/InputTags";
 
-export default function BudgetOverview({ numMonths, type }) {
+export default function BudgetCard({ numMonths, type, setFormData, balance, setBalance }) {
   const baseUrl = import.meta.env.VITE_APP_URL;
 
-  let numTags = Array(Number(numMonths)).fill("+");
-  const [isfix, setIsFix] = useState(false);
-  const [balance, setBalance] = useState([]);
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -24,30 +20,6 @@ export default function BudgetOverview({ numMonths, type }) {
     fetchBalance();
   }, [baseUrl, numMonths]);
 
-  let content;
-  if (type === "income") {
-    content = (
-      <div>
-        <InputTags numMonths={numMonths} nameOfTrans={"Salary"} emoji={"💰"} />
-        <InputTags numMonths={numMonths} nameOfTrans={"Extra"} emoji={"🤑"} />
-      </div>
-    );
-  } else if (type === "outcome") {
-    content = (
-      <div>
-        <InputTags numMonths={numMonths} nameOfTrans={"Rent"} emoji={"💸"} />
-        <InputTags
-          numMonths={numMonths}
-          nameOfTrans={"Utilities"}
-          emoji={"💸"}
-        />
-        <InputTags numMonths={numMonths} nameOfTrans={"Food"} emoji={"💸"} />
-      </div>
-    );
-  } else if (type === "balance") {
-    content = <div></div>;
-  }
-
   return (
     <article className="card">
       <h2 className="card__title">{type}:</h2>
@@ -55,24 +27,75 @@ export default function BudgetOverview({ numMonths, type }) {
         <div className="table-row table-row--borderless">
           <h3 className="table-row__title">Previous balance</h3>
           {balance.map((_, index) => (
-            <p className="table-row__cell" key={index}>
-              {balance[index].preview_balance}
+            <p className="table-row__cell" id={`previous_balance${index}`} key={index}>
+              {balance[index].previous_balance}
             </p>
           ))}
         </div>
       ) : (
         ""
       )}
-      {content}
+      {type === "income" && (
+        <>
+          <InputTags
+            setBalance={setBalance}
+            balance={balance}
+            nameOfTrans="salary"
+            emoji="💰"
+            setFormData={setFormData}
+          />
+          <InputTags
+            setBalance={setBalance}
+            balance={balance}
+            nameOfTrans="extras"
+            emoji="🤑"
+            setFormData={setFormData}
+          />
+        </>
+      )}
+
+      {type === "expenses" && (
+        <>
+          <InputTags
+            setBalance={setBalance}
+            balance={balance}
+            nameOfTrans="rent"
+            emoji="💸"
+            setFormData={setFormData}
+          />
+          <InputTags
+            setBalance={setBalance}
+            balance={balance}
+            nameOfTrans="utilities"
+            emoji="💸"
+            setFormData={setFormData}
+          />
+          <InputTags
+            setBalance={setBalance}
+            balance={balance}
+            nameOfTrans="food"
+            emoji="🍔"
+            setFormData={setFormData}
+          />
+          <InputTags
+            setBalance={setBalance}
+            balance={balance}
+            nameOfTrans="transportation"
+            emoji="🚌"
+            setFormData={setFormData}
+          />
+        </>
+      )}
+
       <div className="table-row">
         <h3 className="table-row__title">{`Total ${type}`}</h3>
         {balance.map((_, index) => (
-          <p className="table-row__cell" key={index}>
-            {type == "income"
-              ? balance[index].total_income
-              : type == "outcome"
-              ? balance[index].total_outcome
-              : balance[index].total_balance}
+          <p className="table-row__cell" id={`${type}${index}`} key={index}>
+            {type === "income"
+              ? balance[index]?.total_income
+              : type === "expenses"
+              ? balance[index]?.total_expenses
+              : balance[index]?.total_balance}
           </p>
         ))}
       </div>
