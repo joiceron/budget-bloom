@@ -25,6 +25,7 @@
   justify-content: end;
   column-gap: 2vw;
   margin-bottom: 0.5rem;
+  align-items: baseline;
 
   @include tablet {
     column-gap: 0.25rem;
@@ -49,9 +50,8 @@
 }
 
 @mixin cells {
-  margin-bottom: 0.5rem;
-  height: 1.875rem;
-  width: 22vw;
+  height: 1.5625rem;
+  width: 20vw;
   text-align: center;
 
   @include tablet {
