@@ -3,17 +3,16 @@
 @use "../../styles/partials/variables" as *;
 
 .view {
-  // display: none;
+  display: flex;
+  justify-content: center;
   margin-top: 1rem;
-  @include tablet {
-    display: flex;
+
+  @include desktop {
     justify-content: flex-end;
   }
 
   &__button {
-    border: 1px solid $bloom-lila;
-    padding: 0.5rem;
-    background-color: $c-white;
+    padding: 0 1rem;
 
     &:hover {
       background-color: $bg-bloom;
@@ -24,13 +23,27 @@
     }
 
     &--left {
-      border-radius: 20px 0 0 20px;
-      padding-left: 1rem;
+      border-radius: 1.25rem 0.125rem 0.125rem 1.25rem;
+      padding-left: 1.5rem;
+    }
+
+    &--center {
+      border-radius: 0.125rem 1.25rem 1.25rem 0.125rem;
+      padding-right: 1.5rem;
+      @include desktop {
+        border-radius: 2px;
+        padding-right: 0.5rem;
+      }
     }
 
     &--right {
-      border-radius: 0 20px 20px 0;
-      padding-right: 1rem;
+      display: none;
+
+      @include desktop {
+        display: block;
+        border-radius: 0.125rem 1.25rem 1.25rem 0.125rem;
+        padding-right: 1.5rem;
+      }
     }
   }
 }
@@ -41,13 +54,20 @@
   border-top: 2px solid $bloom-pink;
   border-bottom: 2px solid $bloom-pink;
   background-color: $c-pink;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
+
   &__space {
-    @include title-cells;
+    display: none;
+
+    @include tablet {
+      @include title-cells;
+    }
   }
 
   &__month {
     @include cells;
+    height: auto;
+    margin-bottom: 0;
   }
 }
 
@@ -56,11 +76,34 @@
   justify-content: space-between;
   gap: 2vw;
   margin-bottom: 2rem;
+
   &__button {
     width: 100%;
     background-color: $c-pink;
+
     @include tablet {
-      width: 10vw;
+      width: 20vw;
+    }
+  }
+}
+
+.gif-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto;
+  border: 2px solid $bg-cream;
+
+  &__text {
+    padding-right: 0 1rem;
+    width: 14rem;
+  }
+
+  &__gif {
+    width: 6rem;
+    margin: 1rem;
+    @include tablet {
+      width: 11rem;
     }
   }
 }

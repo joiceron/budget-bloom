@@ -21,21 +21,47 @@
 
 @mixin row-cells {
   display: flex;
+  flex-wrap: wrap;
   justify-content: end;
-  padding: 0.2rem 0;
-  width: 100%;
+  column-gap: 2vw;
+  margin-bottom: 0.5rem;
+
+  @include tablet {
+    column-gap: 0.25rem;
+    flex-wrap: nowrap;
+    display: flex;
+    justify-content: end;
+    width: 100%;
+  }
 }
 
-
 @mixin title-cells {
-  justify-content: end;
-  justify-self: end;
-  margin-right: 0.8rem;
+  display: flex;
+  width: 90%;
+  margin: 0.5rem;
+
+  @include tablet {
+    width: auto;
+    justify-content: end;
+    justify-self: end;
+    margin-right: 0.8rem;
+  }
 }
 
 @mixin cells {
-  padding: 0.25rem;
-  margin-right: 0.5rem;
-  width: 6vw;
- text-align: end;
+  margin-bottom: 0.5rem;
+  height: 1.875rem;
+  width: 22vw;
+  text-align: center;
+
+  @include tablet {
+    padding: 0.25rem;
+    margin-right: 0.5rem;
+    width: 9vw;
+    text-align: end;
+  }
+
+  @include desktop {
+    width: 5.5vw;
+  }
 }

@@ -10,7 +10,8 @@
   margin: 0;
 }
 
-html, body {
+html,
+body {
   font-family: "Montserrat", sans-serif;
   height: 100%;
 }
@@ -32,7 +33,14 @@ h3 {
 
 p {
   font-family: "Montserrat", sans-serif;
-  font-size: 0.6875rem;
-  font-weight: 400;
+  font-size: 0.8125rem;
+  font-weight: 500;
   color: $bloom-black;
+}
+
+button {
+  @extend p;
+  border: 1px solid $c-grey;
+  border-radius: 2px;
+  height: 1.875rem;
 }

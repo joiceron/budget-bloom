@@ -3,9 +3,14 @@ import { useEffect } from "react";
 import axios from "axios";
 import InputTags from "../InputTags/InputTags";
 
-export default function BudgetCard({ numMonths, type, setFormData, balance, setBalance }) {
+export default function BudgetCard({
+  numMonths,
+  type,
+  setFormData,
+  balance,
+  setBalance,
+}) {
   const baseUrl = import.meta.env.VITE_APP_URL;
-
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -22,12 +27,16 @@ export default function BudgetCard({ numMonths, type, setFormData, balance, setB
 
   return (
     <article className="card">
-      <h2 className="card__title">{type}:</h2>
+      <h2 className="card__title">{type}</h2>
       {type === "income" ? (
         <div className="table-row table-row--borderless">
-          <h3 className="table-row__title">Previous balance</h3>
+          <h3 className="table-row__title">Previous balance:</h3>
           {balance.map((_, index) => (
-            <p className="table-row__cell" id={`previous_balance${index}`} key={index}>
+            <p
+              className="table-row__cell"
+              id={`previous_balance${index}`}
+              key={index}
+            >
               {balance[index].previous_balance}
             </p>
           ))}
@@ -88,9 +97,19 @@ export default function BudgetCard({ numMonths, type, setFormData, balance, setB
       )}
 
       <div className="table-row">
-        <h3 className="table-row__title">{`Total ${type}`}</h3>
+        <h3 className="table-row__title">{`Total ${type}:`}</h3>
         {balance.map((_, index) => (
-          <p className="table-row__cell" id={`${type}${index}`} key={index}>
+          <p
+            className={`table-row__cell ${
+              balance[index].total_balance < 0 && type === "balance"
+                ? "table-row__cell--red"
+                : type === "balance"
+                ? "table-row__cell--green"
+                : ""
+            }`}
+            id={`${type}${index}`}
+            key={index}
+          >
             {type === "income"
               ? balance[index]?.total_income
               : type === "expenses"

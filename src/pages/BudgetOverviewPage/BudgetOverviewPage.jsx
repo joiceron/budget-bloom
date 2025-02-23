@@ -5,6 +5,8 @@ import BudgetOverview from "../../components/BudgetCard/BudgetCard";
 
 export default function BudgetOverviewPage() {
   const baseUrl = import.meta.env.VITE_APP_URL;
+  const giphyUrl = import.meta.env.VITE_GIPHY_URL;
+  const giphyApiKey = import.meta.env.VITE_GIPHY_API_KEY;
   const months = [
     "Jan",
     "Feb",
@@ -20,10 +22,14 @@ export default function BudgetOverviewPage() {
     "Dec",
   ];
   const [balance, setBalance] = useState([]);
-  const [numMonths, setNumMonths] = useState(12);
+  const [numMonths, setNumMonths] = useState(3);
   const [formData, setFormData] = useState({});
   const [shouldSendRequest, setShouldSendRequest] = useState(false);
   const [index, setIndex] = useState(0);
+  const [gif, setGif] = useState(null);
+
+  //false means that it will not show. Empty string for the query of the api call
+  const [gifSection, setGifSection] = useState([false, ""]);
 
   const toggleTrimestral = () => setNumMonths(3);
   const toggleSemestral = () => setNumMonths(6);
@@ -74,11 +80,11 @@ export default function BudgetOverviewPage() {
     setFormData(newData);
     setBalance((prevBalance) => {
       const updatedBalance = [...prevBalance];
-      updatedBalance[index] = newData; 
-      
+      updatedBalance[index] = newData;
+
       if (index + 1 < numMonths) {
         if (!updatedBalance[index + 1]) {
-          updatedBalance[index + 1] = {}; 
+          updatedBalance[index + 1] = {};
         }
         updatedBalance[index + 1]["previous_balance"] =
           newData["total_balance"];
@@ -96,21 +102,55 @@ export default function BudgetOverviewPage() {
           await axios.put(`${baseUrl}budget/${index}`, formData);
           setShouldSendRequest(false);
           const response = await axios.get(`${baseUrl}budget`);
-          setBalance(response.data);
+          setBalance(response.data.slice(0, numMonths));
+          if (balance[numMonths - 1].total_balance < -2000) {
+            setGifSection([true, "bankruptcy"]);
+          } else if (balance[numMonths - 1].total_balance < 0) {
+            setGifSection([true, "poor"]);
+          } else if (balance[numMonths - 1].total_balance < 200) {
+            setGifSection([true, "almost+broke+money"]);
+          } else if (balance[numMonths - 1].total_balance < 2000) {
+            setGifSection([true, "money+shopping"]);
+          } else {
+            setGifSection([true, "happy+money+rich"]);
+          }
         } catch (error) {
           console.error("Error updating budget:", error);
         }
       };
       sendPutRequest();
     }
-  }, [formData, shouldSendRequest, baseUrl, index]);
+  }, [formData, shouldSendRequest, baseUrl, index, numMonths]);
+
+  useEffect(() => {
+    if (gifSection[0] == true) {
+      const sendGiphyRequest = async () => {
+        try {
+          const response = await axios.get(`${giphyUrl}`, {
+            params: {
+              api_key: giphyApiKey,
+              tag: gifSection[1],
+              rating: "pg",
+            },
+          });
+          setGif(response.data.data.images.original.url);
+          setGifSection(false, "");
+        } catch (error) {
+          console.error("Error Ghiphy request:", error);
+        }
+      };
+
+      sendGiphyRequest();
+    }
+  }, [gifSection, giphyApiKey, numMonths]);
 
   const handleCalculate = async () => {
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < numMonths; i++) {
       setIndex(i + 1);
       await inputTagRetrieve(i);
     }
   };
+
   return (
     <>
       <div className="view">
@@ -120,7 +160,10 @@ export default function BudgetOverviewPage() {
         >
           Trimestral view
         </button>
-        <button className="view__button" onClick={toggleSemestral}>
+        <button
+          className="view__button view__button--center"
+          onClick={toggleSemestral}
+        >
           Semestral view
         </button>
         <button
@@ -161,11 +204,21 @@ export default function BudgetOverviewPage() {
         type="balance"
         setFormData={setFormData}
       />
-
+      {gif ? (
+        <section className="gif-section">
+          <p className="gif-section__text">
+            I hope you will have a nice day! Here is a random gif to describe
+            your final situation at the end of this period. 😊
+          </p>
+          <img className="gif-section__gif" src={gif} alt="GIF" />
+        </section>
+      ) : (
+        ""
+      )}
       <div className="acctions">
-        <button className="acctions__button view__button">Clear</button>
+        <button className="acctions__button">Clear</button>
         <button
-          className="acctions__button view__button"
+          className="acctions__button"
           type="submit"
           onClick={handleCalculate}
         >

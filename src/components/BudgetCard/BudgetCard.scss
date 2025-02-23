@@ -5,10 +5,10 @@
 .card {
   margin-bottom: 1rem;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
+  border-radius: 3px;
   box-shadow: 1px 2px 2px 1px #4a2d7370;
   background-color: $bg-cream;
-  
+
   &__title {
     text-transform: uppercase;
   }
@@ -22,12 +22,23 @@
   }
 
   &__title {
+    width: auto;
     color: $bloom-pink;
     @include title-cells;
   }
 
   &__cell {
     @include cells;
-    font-weight: 600;
+    font-weight: 500;
+
+    &--red {
+      color: $c-red;
+      font-size: 0.875rem;
+    }
+
+    &--green {
+      color: $c-green;
+      font-size: 0.875rem;
+    }
   }
 }
