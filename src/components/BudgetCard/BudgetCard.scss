@@ -15,8 +15,9 @@
 }
 
 .table-row {
-  @include row-cells;
   border-top: 1px solid $bloom-pink;
+  @include row-cells;
+  
   &--borderless {
     border-top: none;
   }
@@ -28,9 +29,9 @@
   }
 
   &__cell {
-    @include cells;
     font-weight: 500;
-
+    @include cells;
+    
     &--red {
       color: $c-red;
       font-size: 0.875rem;

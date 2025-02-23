@@ -49,12 +49,12 @@
 }
 
 .calendar {
-  @include row-cells;
   margin-top: 1rem;
   border-top: 2px solid $bloom-pink;
   border-bottom: 2px solid $bloom-pink;
   background-color: $c-pink;
   padding: 0.5rem 1rem;
+  @include row-cells;
 
   &__space {
     display: none;
@@ -65,9 +65,9 @@
   }
 
   &__month {
-    @include cells;
     height: auto;
     margin-bottom: 0;
+    @include cells;
   }
 }
 
