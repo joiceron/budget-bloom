@@ -1,32 +1,62 @@
 import "./InputTags.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function InputTags({
   balance,
   nameOfTrans,
   emoji,
   setBalance,
+  clear,
+  setClear,
 }) {
-  const [isFix, setIsFix] = useState("F");
+  const [isFix, setIsFix] = useState(false);
 
   const toggleIsFix = () => setIsFix((prev) => !prev);
+
+  const handleClearInputs = () => {
+    if (clear) {
+      setBalance((prevBalance) => {
+        const updatedBalance = prevBalance.map((entry) => ({
+          ...entry,
+          [nameOfTrans]: "0.00",
+        }));
+        return [...updatedBalance];
+      });
+      setClear(false);
+    }
+  };
 
   const handleInputChange = (event, index) => {
     const { value } = event.target;
     const updatedBalance = [...balance];
-    updatedBalance[index] = {
-      ...updatedBalance[index], 
-      [nameOfTrans]: value,
-    };
+    if (!isFix) {
+      updatedBalance.forEach((_, i) => {
+        updatedBalance[i] = { ...updatedBalance[i], [nameOfTrans]: value };
+      });
+    } else {
+      updatedBalance[index] = {
+        ...updatedBalance[index],
+        [nameOfTrans]: value,
+      };
+    }
     setBalance(updatedBalance);
   };
+
+  useEffect(() => {
+    handleClearInputs();
+  }, [clear]);
 
   return (
     <div className="balance-row">
       <div className="balance-row__title">
         <h3 className="balance-row__title--text">{nameOfTrans}</h3>
-        <button className="balance-row__title--button" onClick={toggleIsFix}>
-          {isFix ? "Fix" : "Var"}
+        <button
+          className={`balance-row__title--button ${
+            isFix ? "" : "balance-row__title--highlight"
+          }`}
+          onClick={toggleIsFix}
+        >
+          {isFix ? "Var" : "Fix"}
         </button>
         <button className="balance-row__title--button balance-row__title--emoji">
           {emoji}

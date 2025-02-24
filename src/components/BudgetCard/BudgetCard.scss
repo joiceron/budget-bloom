@@ -4,7 +4,7 @@
 
 .card {
   margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   border-radius: 3px;
   box-shadow: 1px 2px 2px 1px #4a2d7370;
   background-color: $bg-cream;
@@ -12,11 +12,20 @@
   &__title {
     text-transform: uppercase;
   }
+
+  @include tablet{
+    padding: 0.5rem 1rem;
+    width: auto;
+  }
 }
 
 .table-row {
   border-top: 1px solid $bloom-pink;
   @include row-cells;
+  
+  @include tablet{
+    width: auto;
+  }
   
   &--borderless {
     border-top: none;

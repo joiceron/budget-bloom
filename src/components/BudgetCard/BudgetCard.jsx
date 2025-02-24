@@ -6,9 +6,10 @@ import InputTags from "../InputTags/InputTags";
 export default function BudgetCard({
   numMonths,
   type,
-  setFormData,
   balance,
   setBalance,
+  clear,
+  setClear,
 }) {
   const baseUrl = import.meta.env.VITE_APP_URL;
 
@@ -21,7 +22,6 @@ export default function BudgetCard({
         console.error("Error fetching budget:", error);
       }
     };
-
     fetchBalance();
   }, [baseUrl, numMonths]);
 
@@ -44,6 +44,7 @@ export default function BudgetCard({
       ) : (
         ""
       )}
+      
       {type === "income" && (
         <>
           <InputTags
@@ -51,14 +52,16 @@ export default function BudgetCard({
             balance={balance}
             nameOfTrans="salary"
             emoji="💰"
-            setFormData={setFormData}
+            clear={clear}
+            setClear={setClear}
           />
           <InputTags
             setBalance={setBalance}
             balance={balance}
             nameOfTrans="extras"
             emoji="🤑"
-            setFormData={setFormData}
+            clear={clear}
+            setClear={setClear}
           />
         </>
       )}
@@ -70,28 +73,32 @@ export default function BudgetCard({
             balance={balance}
             nameOfTrans="rent"
             emoji="💸"
-            setFormData={setFormData}
+            clear={clear}
+            setClear={setClear}
           />
           <InputTags
             setBalance={setBalance}
             balance={balance}
             nameOfTrans="utilities"
             emoji="💸"
-            setFormData={setFormData}
+            clear={clear}
+            setClear={setClear}
           />
           <InputTags
             setBalance={setBalance}
             balance={balance}
             nameOfTrans="food"
             emoji="🍔"
-            setFormData={setFormData}
+            clear={clear}
+            setClear={setClear}
           />
           <InputTags
             setBalance={setBalance}
             balance={balance}
             nameOfTrans="transportation"
             emoji="🚌"
-            setFormData={setFormData}
+            clear={clear}
+            setClear={setClear}
           />
         </>
       )}

@@ -1,12 +1,17 @@
+import "./BudgetOverviewPage.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./BudgetOverviewPage.scss";
 import BudgetOverview from "../../components/BudgetCard/BudgetCard";
+import startIcon from "../../assets/icons/star.svg";
+import clearIcon from "../../assets/icons/delete_sweep.svg";
 
 export default function BudgetOverviewPage() {
   const baseUrl = import.meta.env.VITE_APP_URL;
   const giphyUrl = import.meta.env.VITE_GIPHY_URL;
   const giphyApiKey = import.meta.env.VITE_GIPHY_API_KEY;
+
+  //false means that it will not show. Empty string for the query of the api call
+  const [gifSection, setGifSection] = useState([false, ""]);
   const months = [
     "Jan",
     "Feb",
@@ -22,18 +27,12 @@ export default function BudgetOverviewPage() {
     "Dec",
   ];
   const [balance, setBalance] = useState([]);
-  const [numMonths, setNumMonths] = useState(3);
+  const [numMonths, setNumMonths] = useState(6);
   const [formData, setFormData] = useState({});
   const [shouldSendRequest, setShouldSendRequest] = useState(false);
   const [index, setIndex] = useState(0);
   const [gif, setGif] = useState(null);
-
-  //false means that it will not show. Empty string for the query of the api call
-  const [gifSection, setGifSection] = useState([false, ""]);
-
-  const toggleTrimestral = () => setNumMonths(3);
-  const toggleSemestral = () => setNumMonths(6);
-  const toggleAnnual = () => setNumMonths(12);
+  const [clear, setClear] = useState(false);
 
   const inputTagRetrieve = async (index) => {
     const newData = {};
@@ -89,7 +88,6 @@ export default function BudgetOverviewPage() {
         updatedBalance[index + 1]["previous_balance"] =
           newData["total_balance"];
       }
-
       return updatedBalance;
     });
     setShouldSendRequest(true);
@@ -120,7 +118,7 @@ export default function BudgetOverviewPage() {
       };
       sendPutRequest();
     }
-  }, [formData, shouldSendRequest, baseUrl, index, numMonths]);
+  }, [formData, shouldSendRequest, baseUrl, numMonths]);
 
   useEffect(() => {
     if (gifSection[0] == true) {
@@ -151,24 +149,28 @@ export default function BudgetOverviewPage() {
     }
   };
 
+  const handleClear = async () => {
+    setClear(true);
+  };
+
   return (
     <>
       <div className="view">
         <button
           className="view__button view__button--left"
-          onClick={toggleTrimestral}
+          onClick={() => setNumMonths(3)}
         >
           Trimestral view
         </button>
         <button
           className="view__button view__button--center"
-          onClick={toggleSemestral}
+          onClick={() => setNumMonths(6)}
         >
           Semestral view
         </button>
         <button
           className="view__button view__button--right"
-          onClick={toggleAnnual}
+          onClick={() => setNumMonths(12)}
         >
           Annual view
         </button>
@@ -188,22 +190,39 @@ export default function BudgetOverviewPage() {
         balance={balance}
         numMonths={numMonths}
         type="income"
-        setFormData={setFormData}
+        clear={clear}
+        setClear={setClear}
       />
       <BudgetOverview
         setBalance={setBalance}
         balance={balance}
         numMonths={numMonths}
         type="expenses"
-        setFormData={setFormData}
+        clear={clear}
+        setClear={setClear}
       />
       <BudgetOverview
         setBalance={setBalance}
         balance={balance}
         numMonths={numMonths}
         type="balance"
-        setFormData={setFormData}
+        clear={clear}
       />
+
+      <div className="acctions">
+        <button type="reset" onClick={handleClear} className="acctions__button">
+          Clear
+          <img src={clearIcon} alt="trash bin icon for the button Clean" />
+        </button>
+        <button
+          className="acctions__button"
+          type="submit"
+          onClick={handleCalculate}
+        >
+          Calculate{" "}
+          <img src={startIcon} alt="star icon for the button Calculate" />
+        </button>
+      </div>
       {gif ? (
         <section className="gif-section">
           <p className="gif-section__text">
@@ -215,16 +234,6 @@ export default function BudgetOverviewPage() {
       ) : (
         ""
       )}
-      <div className="acctions">
-        <button className="acctions__button">Clear</button>
-        <button
-          className="acctions__button"
-          type="submit"
-          onClick={handleCalculate}
-        >
-          Calculate
-        </button>
-      </div>
     </>
   );
 }

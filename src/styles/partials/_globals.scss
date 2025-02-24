@@ -33,7 +33,7 @@ h3 {
 
 p {
   font-family: "Montserrat", sans-serif;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 500;
   color: $bloom-black;
 }
@@ -43,4 +43,15 @@ button {
   border: 1px solid $c-grey;
   border-radius: 2px;
   height: 1.875rem;
+  transition: background-color 0.2s ease-in;
+
+  &:hover {
+    background-color: $bg-bloom;
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: scale(0.9);
+    background-color:$bloom-lila;
+  }
 }
