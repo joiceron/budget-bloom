@@ -28,18 +28,22 @@ export default function InputTags({
 
   const handleInputChange = (event, index) => {
     const { value } = event.target;
-    const updatedBalance = [...balance];
-    if (!isFix) {
-      updatedBalance.forEach((_, i) => {
-        updatedBalance[i] = { ...updatedBalance[i], [nameOfTrans]: value };
-      });
+    if (/^\d*\.?\d*$/.test(value)) {
+      const updatedBalance = [...balance];
+      if (!isFix) {
+        updatedBalance.forEach((_, i) => {
+          updatedBalance[i] = { ...updatedBalance[i], [nameOfTrans]: value };
+        });
+      } else {
+        updatedBalance[index] = {
+          ...updatedBalance[index],
+          [nameOfTrans]: value,
+        };
+      }
+      setBalance(updatedBalance);
     } else {
-      updatedBalance[index] = {
-        ...updatedBalance[index],
-        [nameOfTrans]: value,
-      };
+      alert("Please insert just numbers in this format 'x.xx'")
     }
-    setBalance(updatedBalance);
   };
 
   useEffect(() => {
@@ -70,6 +74,7 @@ export default function InputTags({
             className="balance-row__cell"
             id={`${nameOfTrans}${index}`}
             type="text"
+            pattern="^\d*\.?\d*$"
             onChange={(event) => handleInputChange(event, index)}
           />
         </label>

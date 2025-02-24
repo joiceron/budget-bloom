@@ -105,8 +105,8 @@ export default function BudgetOverviewPage() {
             setGifSection([true, "bankruptcy"]);
           } else if (balance[numMonths - 1].total_balance < 0) {
             setGifSection([true, "poor"]);
-          } else if (balance[numMonths - 1].total_balance < 200) {
-            setGifSection([true, "almost+broke+money"]);
+          } else if (balance[numMonths - 1].total_balance < 100) {
+            setGifSection([true, "almost+broke"]);
           } else if (balance[numMonths - 1].total_balance < 2000) {
             setGifSection([true, "money+shopping"]);
           } else {
