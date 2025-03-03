@@ -101,9 +101,9 @@ export default function BudgetOverviewPage() {
           setShouldSendRequest(false);
           const response = await axios.get(`${baseUrl}budget`);
           setBalance(response.data.slice(0, numMonths));
-          if (balance[numMonths - 1].total_balance < -2000) {
+          if (balance[numMonths - 1].total_balance < -100) {
             setGifSection([true, "bankruptcy"]);
-          } else if (balance[numMonths - 1].total_balance < 0) {
+          } else if (balance[numMonths - 1].total_balance < 10) {
             setGifSection([true, "poor"]);
           } else if (balance[numMonths - 1].total_balance < 100) {
             setGifSection([true, "almost+broke"]);
@@ -118,7 +118,7 @@ export default function BudgetOverviewPage() {
       };
       sendPutRequest();
     }
-  }, [formData, shouldSendRequest, baseUrl, numMonths]);
+  }, [formData, shouldSendRequest, baseUrl, numMonths, index]);
 
   useEffect(() => {
     if (gifSection[0] == true) {
@@ -132,7 +132,7 @@ export default function BudgetOverviewPage() {
             },
           });
           setGif(response.data.data.images.original.url);
-          setGifSection(false, "");
+          setGifSection([false, ""]);
         } catch (error) {
           console.error("Error Ghiphy request:", error);
         }
@@ -153,24 +153,31 @@ export default function BudgetOverviewPage() {
     setClear(true);
   };
 
+  if (!balance) {
+    return <h2>Loading...</h2>;
+  }
+
   return (
     <>
       <div className="view">
         <button
           className="view__button view__button--left"
           onClick={() => setNumMonths(3)}
+          type="button"
         >
           Trimestral view
         </button>
         <button
           className="view__button view__button--center"
           onClick={() => setNumMonths(6)}
+          type="button"
         >
           Semestral view
         </button>
         <button
           className="view__button view__button--right"
           onClick={() => setNumMonths(12)}
+          type="button"
         >
           Annual view
         </button>
@@ -179,9 +186,9 @@ export default function BudgetOverviewPage() {
       <div className="calendar">
         <span className="calendar__space"></span>
         {months.slice(0, numMonths).map((month) => (
-          <h2 className="calendar__month" key={month}>
+          <h4 className="calendar__month" key={month}>
             {month}
-          </h2>
+          </h4>
         ))}
       </div>
 
@@ -209,6 +216,18 @@ export default function BudgetOverviewPage() {
         clear={clear}
       />
 
+      {gif ? (
+        <section className="gif-section">
+          <p className="gif-section__text">
+            I hope you will have a nice day! Here is a random gif to describe
+            your final situation at the end of this period. 😊
+          </p>
+          <img className="gif-section__gif" src={gif} alt="GIF" />
+        </section>
+      ) : (
+        ""
+      )}
+
       <div className="acctions">
         <button type="reset" onClick={handleClear} className="acctions__button">
           Clear
@@ -223,17 +242,6 @@ export default function BudgetOverviewPage() {
           <img src={startIcon} alt="star icon for the button Calculate" />
         </button>
       </div>
-      {gif ? (
-        <section className="gif-section">
-          <p className="gif-section__text">
-            I hope you will have a nice day! Here is a random gif to describe
-            your final situation at the end of this period. 😊
-          </p>
-          <img className="gif-section__gif" src={gif} alt="GIF" />
-        </section>
-      ) : (
-        ""
-      )}
     </>
   );
 }

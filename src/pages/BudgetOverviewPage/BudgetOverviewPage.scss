@@ -8,11 +8,12 @@
   margin-top: 1rem;
 
   @include desktop {
-    justify-content: flex-end;
   }
 
   &__button {
     padding: 0 1rem;
+    width: auto;
+    margin: 0.1rem;
 
     &--left {
       border-radius: 1.25rem 0.125rem 0.125rem 1.25rem;
@@ -45,7 +46,7 @@
   margin-top: 1rem;
   border-top: 2px solid $bloom-pink;
   border-bottom: 2px solid $bloom-pink;
-  background-color: $c-pink;
+  background-color: $bg-bloom;
   padding: 0.5rem 1rem;
   @include row-cells;
 
@@ -60,7 +61,6 @@
   &__month {
     height: auto;
     margin-bottom: 0;
-    font-weight: 600;
     @include cells;
   }
 }
@@ -77,11 +77,11 @@
     justify-content: center;
     width: 100%;
     gap: 0.4rem;
-    background-color: $c-pink;
-    height: 2rem;
+    background-color: $bg-bloom;
+    height: 2.5rem;
 
     @include tablet {
-      width: 20vw;
+      width: 15rem;
     }
   }
 }
@@ -92,15 +92,23 @@
   justify-content: center;
   margin: 1rem auto;
   border: 2px solid $bg-cream;
+  background-color: #d6cae9;
 
   &__text {
     padding-right: 0 1rem;
-    width: 14rem;
+    width: 40vw;
+    text-align: start;
+    padding: 1rem;
+
+    @include tablet{
+      padding: 3rem;
+
+    }
   }
 
   &__gif {
-    width: 6rem;
-    margin: 1rem;
+    width: 8rem;
+    margin: 1rem 4rem 1rem 1rem;
 
     @include tablet {
       width: 17rem;

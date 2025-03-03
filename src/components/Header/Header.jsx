@@ -1,7 +1,7 @@
 import "./Header.scss";
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import logo from "../../assets/logo/logo.png";
+import logo from "../../assets/logo/logo.svg";
 import gear from "../../assets/icons/gear.svg";
 
 export default function Header() {
@@ -10,7 +10,7 @@ export default function Header() {
       <nav className="header__container">
         <NavLink to={"/"} className="header__logo">
           <img src={logo} alt="logo Instock" className="header__logo--icon" />
-          <span className="header__logo--text">Budget Bloom</span>
+          <h1 className="header__logo--text">Budget Bloom</h1>
         </NavLink>
         <NavLink to={"/account"} className="account">
           <p className="account__user-name">Joice C.</p>

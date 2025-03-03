@@ -44,7 +44,7 @@ export default function BudgetCard({
       ) : (
         ""
       )}
-      
+
       {type === "income" && (
         <>
           <InputTags

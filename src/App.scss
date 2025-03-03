@@ -5,4 +5,7 @@
 .main {
   flex-grow: 1;
   @include padding-components;
+  @include desktop{
+    justify-content: center;
+  }
 }

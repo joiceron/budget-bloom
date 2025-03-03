@@ -17,6 +17,9 @@
   @include tablet {
     padding: 0 2rem;
   }
+  @include desktop() {
+    margin: auto;
+  }
 }
 
 @mixin row-cells {
@@ -32,7 +35,6 @@
     flex-wrap: nowrap;
     display: flex;
     justify-content: end;
-    width: auto;
   }
 }
 

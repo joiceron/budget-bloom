@@ -42,7 +42,7 @@ export default function InputTags({
       }
       setBalance(updatedBalance);
     } else {
-      alert("Please insert just numbers in this format 'x.xx'")
+      alert("Please insert just numbers in this format 'x.xx'");
     }
   };
 
@@ -53,7 +53,10 @@ export default function InputTags({
   return (
     <div className="balance-row">
       <div className="balance-row__title">
-        <h3 className="balance-row__title--text">{nameOfTrans}</h3>
+        <h3 className="balance-row__title--text">
+          <span>{nameOfTrans}</span>
+        </h3>
+
         <button
           className={`balance-row__title--button ${
             isFix ? "" : "balance-row__title--highlight"

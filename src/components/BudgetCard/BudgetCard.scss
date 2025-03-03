@@ -15,7 +15,6 @@
 
   @include tablet{
     padding: 0.5rem 1rem;
-    width: auto;
   }
 }
 
@@ -25,6 +24,7 @@
   
   @include tablet{
     width: auto;
+    margin-bottom: 0;
   }
   
   &--borderless {
@@ -32,8 +32,8 @@
   }
 
   &__title {
-    width: auto;
     color: $bloom-pink;
+    width: auto;
     @include title-cells;
   }
 
@@ -43,12 +43,14 @@
     
     &--red {
       color: $c-red;
-      font-size: 0.875rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
     }
 
     &--green {
       color: $c-green;
-      font-size: 0.875rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
     }
   }
 }

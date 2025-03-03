@@ -18,32 +18,39 @@ body {
 
 h2 {
   font-family: "Montserrat", sans-serif;
-  text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 11px;
   font-weight: 500;
-  color: $bloom-pink;
+  color: $bloom-lila;
 }
 
 h3 {
   font-family: "Montserrat", sans-serif;
-  font-size: 0.875rem;
+  font-size: 13px;
   font-weight: 500;
+  color: $bloom-black;
+}
+
+h4 {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
   color: $bloom-black;
 }
 
 p {
   font-family: "Montserrat", sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: 0.875rem;
+  font-weight: 600;
   color: $bloom-black;
 }
 
 button {
   @extend p;
-  border: 1px solid $c-grey;
+  border: 0.5px solid $bloom-pink;
   border-radius: 2px;
   height: 1.875rem;
   transition: background-color 0.2s ease-in;
+  color: $bloom-black;
 
   &:hover {
     background-color: $bg-bloom;
@@ -52,6 +59,5 @@ button {
 
   &:active {
     transform: scale(0.9);
-    background-color:$bloom-lila;
   }
 }

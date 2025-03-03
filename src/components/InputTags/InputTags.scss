@@ -14,7 +14,12 @@
       @include tablet {
         display: flex;
         align-items: center;
+        text-transform: lowercase;
         @include title-cells;
+
+        & span::first-letter {
+          text-transform: uppercase;
+        }
       }
     }
 
@@ -22,6 +27,7 @@
       display: none;
 
       @include tablet {
+        position: relative;
         display: block;
         margin-left: 0.5rem;
         width: 1.875rem;
@@ -32,7 +38,7 @@
     }
 
     &--highlight {
-      background-color: $c-pink;
+      background-color: $bg-bloom;
     }
 
     &--emoji {
@@ -40,7 +46,7 @@
       font-size: 1.125rem;
       background-color: $c-white;
 
-      &:hover{
+      &:hover {
         background-color: $c-white;
         cursor: inherit;
       }
@@ -49,7 +55,8 @@
 
   &__cell {
     font-family: "Montserrat", sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
     border-radius: 0.375rem;
     border: none;
     outline: none;
@@ -57,7 +64,7 @@
     margin-top: 0.3rem;
     @include cells;
 
-    @include tablet{
+    @include tablet {
       margin-bottom: 0;
     }
 
