@@ -1,6 +1,6 @@
 import "./Header.scss";
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo/logo.svg";
 import gear from "../../assets/icons/gear.svg";
 
