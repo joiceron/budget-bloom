@@ -1,5 +1,6 @@
 {
   "name": "budget-bloom",
+  "homepage": "https://joiceron.github.io/budget-bloom",
   "private": true,
   "version": "0.0.0",
   "type": "module",
