@@ -9,16 +9,12 @@ import "./App.scss";
 function App() {
   return (
     <>
-      {/* <BrowserRouter> */}
+    {/* test without routes */}
       <Header />
       <main className="main">
-        {/* <Routes> */}
-        <Route path="/" element={<BudgetOverviewPage />} />
-        {/* <Route path="*" element={<NotFoundPage />} /> */}
-        {/* </Routes> */}
+        <BudgetOverviewPage />
       </main>
       <Footer />
-      {/* </BrowserRouter> */}
     </>
   );
 }
