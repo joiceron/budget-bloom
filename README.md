@@ -1,6 +1,8 @@
-# Project Title
+# BudgetBloom
 
-BudgetBloom
+![Image](https://github.com/user-attachments/assets/d967a446-1cac-4184-8580-d4326f567ad8)
+![Image](https://github.com/user-attachments/assets/55ce8d0c-ab10-4fd8-8df7-31e62703e4de)
+![Image](https://github.com/user-attachments/assets/880e3417-125c-4738-927e-81fdcfb6ddf4)
 
 ## Overview
 
@@ -49,10 +51,6 @@ Home:
     Clean and calculate button.
 
 Sign in/Sign up: To be implemented.
-
-### Mockups
-
-Atached to the submission.
 
 ### Data
 
