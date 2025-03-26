@@ -1,12 +1,20 @@
 # BudgetBloom
 
-![Image](https://github.com/user-attachments/assets/d967a446-1cac-4184-8580-d4326f567ad8)
-![Image](https://github.com/user-attachments/assets/55ce8d0c-ab10-4fd8-8df7-31e62703e4de)
-![Image](https://github.com/user-attachments/assets/880e3417-125c-4738-927e-81fdcfb6ddf4)
+## Deployed Link
+
+**Front-end:**  [BudgetBloom Live](https://joiceron.github.io/budget-bloom/)  
+
+**Back-end:**  [GitHub Repository](https://github.com/joiceron/budget-bloom-server)
 
 ## Overview
 
 BudgetBloom is a budget estimator designed to assist users in visualizing their financial situation and setting financial goals. The web application lets users plan their annual budget by entering their monthly expenses and income with spending categories.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d967a446-1cac-4184-8580-d4326f567ad8" height="250">  
+  <img src="https://github.com/user-attachments/assets/55ce8d0c-ab10-4fd8-8df7-31e62703e4de" height="250"> 
+  <img src="https://github.com/user-attachments/assets/880e3417-125c-4738-927e-81fdcfb6ddf4" height="250"> 
+</p>
 
 ### Problem Space
 
