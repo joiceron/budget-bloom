@@ -7,7 +7,6 @@ import "./App.scss";
 function App() {
   return (
     <>
-    {/* test without routes */}
       <Header />
       <main className="main">
         <BudgetOverviewPage />

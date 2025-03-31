@@ -157,6 +157,8 @@ export default function BudgetOverviewPage() {
     return <h2>Loading...</h2>;
   }
 
+  console.log(balance)
+
   return (
     <>
       <div className="view">
