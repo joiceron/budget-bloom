@@ -5,7 +5,7 @@ import BudgetOverview from "../../components/BudgetCard/BudgetCard";
 import startIcon from "../../assets/icons/star.svg";
 import clearIcon from "../../assets/icons/delete_sweep.svg";
 
-export default function BudgetOverviewPage({setDatabaseOff}) {
+export default function BudgetOverviewPage({setServerOff, serverOff}) {
   // -=-=-=-=-=-=-=-=-=-=- Declarations -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   const baseUrl = import.meta.env.VITE_APP_URL;
   const giphyUrl = import.meta.env.VITE_GIPHY_URL;
@@ -161,7 +161,6 @@ export default function BudgetOverviewPage({setDatabaseOff}) {
   }
 
 // -=-=-=-=-=-=-=-=-=-=- Return -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
   return (
     <>
       <div className="view">
@@ -204,6 +203,7 @@ export default function BudgetOverviewPage({setDatabaseOff}) {
         type="income"
         clear={clear}
         setClear={setClear}
+        serverOff={serverOff}
       />
       <BudgetOverview
         setBalance={setBalance}
@@ -212,6 +212,7 @@ export default function BudgetOverviewPage({setDatabaseOff}) {
         type="expenses"
         clear={clear}
         setClear={setClear}
+        serverOff={serverOff}
       />
       <BudgetOverview
         setBalance={setBalance}
@@ -219,6 +220,7 @@ export default function BudgetOverviewPage({setDatabaseOff}) {
         numMonths={numMonths}
         type="balance"
         clear={clear}
+        serverOff={serverOff}
       />
 
       {gif ? (

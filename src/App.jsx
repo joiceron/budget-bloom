@@ -5,13 +5,13 @@ import Footer from "./components/Footer/Footer";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [databaseOff, setDatabaseOff] = useState(true);
+  const [serverOff, setServerOff] = useState(true);
 
   return (
     <>
-      <Header databaseOff={databaseOff} setDatabaseOff={setDatabaseOff} />
+      <Header serverOff={serverOff} setServerOff={setServerOff} />
       <main className="main">
-        <BudgetOverviewPage setDatabaseOff={setDatabaseOff} />
+        <BudgetOverviewPage serverOff={serverOff} setServerOff={setServerOff} />
       </main>
       <Footer />
     </>

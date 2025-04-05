@@ -11,6 +11,15 @@ export default function Footer() {
 
       <div className="socials">
           <a
+            href="https://joiceron.github.io"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="socials__icon"
+            aria-label="Portfolio"
+          >
+           <FiExternalLink size={20} />
+          </a>
+          <a
             href="https://github.com/joiceron"
             target="_blank"
             rel="noopener noreferrer"
@@ -27,15 +36,6 @@ export default function Footer() {
             aria-label="LinkedIn"
           >
             <FaLinkedin size={20} />
-          </a>
-          <a
-            href="https://joiceron.github.io"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="socials__icon"
-            aria-label="Portfolio"
-          >
-           <FiExternalLink size={20} />
           </a>
         </div>
     </footer>
