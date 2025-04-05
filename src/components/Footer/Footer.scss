@@ -3,13 +3,11 @@
 @use "../../styles/partials/globals" as *;
 
 .footer {
-  justify-content: center;
   display: flex;
-  align-items: flex-end;
-  align-self: stretch;
+  justify-content: center;
+  align-items: center;
   padding: 2.5rem 0;
   background-color: $bg-cream;
-  z-index: -1;
 
   @include tablet {
     padding: 2.5rem 0;
@@ -21,10 +19,24 @@
 
   &__text {
     font-size: 0.6875rem;
-    color: $bloom-black;
+    color: $c-gray;
     margin: 0;
     @include tablet {
       font-size: 0.75rem;
     }
   }
+}
+
+.socials{
+margin: 0 0.5rem ;
+  &__icon {
+    z-index: 1;
+    font-size: 0.6875rem;
+    color: $c-gray;
+    margin: 0 0.2rem ;
+    @include tablet {
+      font-size: 0.75rem;
+    }
+  }
+
 }

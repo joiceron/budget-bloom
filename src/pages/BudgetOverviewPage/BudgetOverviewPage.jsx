@@ -5,13 +5,12 @@ import BudgetOverview from "../../components/BudgetCard/BudgetCard";
 import startIcon from "../../assets/icons/star.svg";
 import clearIcon from "../../assets/icons/delete_sweep.svg";
 
-export default function BudgetOverviewPage() {
+export default function BudgetOverviewPage({setDatabaseOff}) {
+  // -=-=-=-=-=-=-=-=-=-=- Declarations -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   const baseUrl = import.meta.env.VITE_APP_URL;
   const giphyUrl = import.meta.env.VITE_GIPHY_URL;
   const giphyApiKey = import.meta.env.VITE_GIPHY_API_KEY;
-
-  //false means that it will not show. Empty string for the query of the api call
-  const [gifSection, setGifSection] = useState([false, ""]);
+  const [gifSection, setGifSection] = useState([false, ""]);//false means that it will not show. Empty string for the query of the api call
   const months = [
     "Jan",
     "Feb",
@@ -33,7 +32,9 @@ export default function BudgetOverviewPage() {
   const [index, setIndex] = useState(0);
   const [gif, setGif] = useState(null);
   const [clear, setClear] = useState(false);
+// -=-=-=-=-=-=-=-=-=-=- Functions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+//-=-=- Calculate the inputs
   const inputTagRetrieve = async (index) => {
     const newData = {};
     let inputs = [];
@@ -93,6 +94,7 @@ export default function BudgetOverviewPage() {
     setShouldSendRequest(true);
   };
 
+  //-=-=- Calculate the inputs
   useEffect(() => {
     if (shouldSendRequest && formData) {
       const sendPutRequest = async () => {
@@ -135,6 +137,7 @@ export default function BudgetOverviewPage() {
           setGifSection([false, ""]);
         } catch (error) {
           console.error("Error Ghiphy request:", error);
+          alert("Sorry we can no show a gif in this moment");
         }
       };
 
@@ -157,7 +160,7 @@ export default function BudgetOverviewPage() {
     return <h2>Loading...</h2>;
   }
 
-  console.log(balance)
+// -=-=-=-=-=-=-=-=-=-=- Return -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   return (
     <>

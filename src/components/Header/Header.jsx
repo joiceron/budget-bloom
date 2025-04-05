@@ -1,25 +1,43 @@
 import "./Header.scss";
-import React from "react";
-import { NavLink } from "react-router-dom";
 import logo from "../../assets/logo/logo.svg";
-import gear from "../../assets/icons/gear.svg";
+import databaseIcon from "../../assets/icons/database.svg";
+import databaseOffIcon from "../../assets/icons/database_off.svg";
 
-export default function Header() {
+export default function Header({ setDatabaseOff, databaseOff }) {
+  const toggleDatabaseOff = () => {
+    setDatabaseOff(prevState => !prevState);
+  }
   return (
     <header className="header">
       <nav className="header__container">
         <div to={"/"} className="header__logo">
-          <img src={logo} alt="logo Instock" className="header__logo--icon" />
+          <img
+            src={logo}
+            alt="Logo: A pink coin with a flower inside"
+            className="header__logo--icon"
+          />
           <h1 className="header__logo--text">Budget Bloom</h1>
         </div>
-        <div to={"/"} className="account">
-          <p className="account__user-name">Joice C.</p>
-          <img
-            src={gear}
-            alt="gear icon for going to account settings"
-            className="account__icon"
-          />
-        </div>
+
+        {databaseOff ? (
+          <div onClick={toggleDatabaseOff} className="options">
+            <p className="options__user-name">Demo</p>
+            <img
+              src={databaseOffIcon}
+              alt="Working without installing a server"
+              className="options__icon"
+            />
+          </div>
+        ) : (
+          <div onClick={toggleDatabaseOff}  className="options">
+            <p className="options__user-name">Demo with server</p>
+            <img
+              src={databaseIcon}
+              alt="Working server with database"
+              className="options__icon"
+            />
+          </div>
+        )}
       </nav>
     </header>
   );

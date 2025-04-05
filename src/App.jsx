@@ -1,15 +1,17 @@
+import "./App.scss";
 import BudgetOverviewPage from "./pages/BudgetOverviewPage/BudgetOverviewPage";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-
-import "./App.scss";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [databaseOff, setDatabaseOff] = useState(true);
+
   return (
     <>
-      <Header />
+      <Header databaseOff={databaseOff} setDatabaseOff={setDatabaseOff} />
       <main className="main">
-        <BudgetOverviewPage />
+        <BudgetOverviewPage setDatabaseOff={setDatabaseOff} />
       </main>
       <Footer />
     </>

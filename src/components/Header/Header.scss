@@ -34,7 +34,7 @@
     }
 
     &--text {
-      color: $bloom-lila;
+      color: $budget-green;
       font-family: "Bungee", serif;
       font-size: 1.5625rem;
 
@@ -45,13 +45,13 @@
   }
 }
 
-.account {
+.options {
   text-decoration: none;
   display: flex;
   align-items: center;
 
   &__icon {
-    height: 2.8rem;
+    height: 2rem;
     margin-left: 1.5rem;
   }
 
