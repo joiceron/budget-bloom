@@ -3,40 +3,66 @@
 @use "../../styles/partials/globals" as *;
 
 .footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2.5rem 0;
   background-color: $bg-cream;
 
-  @include tablet {
-    padding: 2.5rem 0;
+  &__instructions {
+    margin: 2rem 0 0.5rem 0;
+    @include padding-components;
+
+    &--bold {
+      font-weight: 700;
+    }
+
+    &--link {
+      color: $budget-green;
+
+      &:hover {
+        color: $bloom-pink;
+      }
+    }
   }
-  
-  @include desktop {
-    padding: 3rem 0;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 1rem;
+
+    @include tablet {
+      padding: 2.5rem 1rem;
+    }
+
+    @include desktop {
+      padding: 3rem 1rem;
+    }
   }
 
   &__text {
     font-size: 0.6875rem;
     color: $c-gray;
     margin: 0;
+
     @include tablet {
       font-size: 0.75rem;
     }
   }
 }
 
-.socials{
-margin: 0 0.5rem ;
+.socials {
+  margin: 0 0.5rem;
+
   &__icon {
     z-index: 1;
     font-size: 0.6875rem;
     color: $c-gray;
-    margin: 0 0.2rem ;
+    margin: 0 0.2rem;
+
+    &:hover {
+      color: $bloom-pink;
+    }
+
     @include tablet {
       font-size: 0.75rem;
     }
   }
-
 }

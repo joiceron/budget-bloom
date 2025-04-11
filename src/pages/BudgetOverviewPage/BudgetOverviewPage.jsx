@@ -33,7 +33,8 @@ export default function BudgetOverviewPage({ setServerOff, serverOff }) {
   const [gif, setGif] = useState(null);
   const [clear, setClear] = useState(false);
   // -=-=-=-=-=-=-=-=-=-=- Functions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  const inputTagRetrieve = async (index) => {  //-=-=- Calculate the inputs
+  const inputTagRetrieve = async (index) => {
+    //-=-=- Calculate the inputs
     const newData = {};
     let inputs = [];
     let prev_balance = 0.0;
@@ -109,7 +110,7 @@ export default function BudgetOverviewPage({ setServerOff, serverOff }) {
   //-=-=- Change data in the server
   useEffect(() => {
     if (formData) {
-      if (serverOff === false  && shouldSendRequest === true) {
+      if (serverOff === false && shouldSendRequest === true) {
         const sendPutRequest = async () => {
           try {
             await axios.put(`${baseUrl}budget/${index}`, formData);
@@ -129,6 +130,9 @@ export default function BudgetOverviewPage({ setServerOff, serverOff }) {
             }
           } catch (error) {
             console.error("Error updating budget:", error);
+            alert(
+              "Please make sure to connect to the database: https://github.com/joiceron/budget-bloom-server or click in Demo"
+            );
           }
         };
         sendPutRequest(balance);
@@ -136,8 +140,18 @@ export default function BudgetOverviewPage({ setServerOff, serverOff }) {
         Object.entries(formData).forEach(([key, value]) => {
           const numberValue = parseFloat(value);
           formData[key] = numberValue.toFixed(2);
-          setShouldSendRequest(false);
         });
+        if (formData.total_balance < -100) {
+          setGifSection([true, "bankruptcy"]);
+        } else if (formData.total_balance< 10) {
+          setGifSection([true, "poor"]);
+        } else if (formData.total_balance < 100) {
+          setGifSection([true, "almost+broke"]);
+        } else if (formData.total_balance < 4000) {
+          setGifSection([true, "money+shopping"]);
+        } else {
+          setGifSection([true, "happy+money+rich"]);
+        }
       }
     }
   }, [formData, shouldSendRequest, baseUrl, numMonths, index]);

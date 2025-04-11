@@ -49,20 +49,21 @@
   text-decoration: none;
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   &__icon {
     height: 2rem;
-    margin-left: 1.5rem;
+    margin-left: 1rem;
   }
 
-  &__user-name {
+  &__text{
     display: none;
 
     @include tablet {
       display: initial;
       text-decoration: none;
       color: $bloom-black;
-      font-size: 1.5rem;
+      font-size: 1rem;
       font-weight: 600;
     }
   }
