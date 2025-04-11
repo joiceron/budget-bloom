@@ -3,10 +3,13 @@ import logo from "../../assets/logo/logo.svg";
 import databaseIcon from "../../assets/icons/database.svg";
 import databaseOffIcon from "../../assets/icons/database_off.svg";
 
-export default function Header({ setDatabaseOff, databaseOff }) {
+export default function Header({ serverOff, setServerOff }) {
+  //=-=-=-=-=-=-=-=-=-=-=-=- Functions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   const toggleDatabaseOff = () => {
-    setDatabaseOff(prevState => !prevState);
-  }
+    setServerOff((prevState) => !prevState);
+  };
+
+  //=-=-=-=-=-=-=-=-=-=-=- Return -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   return (
     <header className="header">
       <nav className="header__container">
@@ -19,7 +22,7 @@ export default function Header({ setDatabaseOff, databaseOff }) {
           <h1 className="header__logo--text">Budget Bloom</h1>
         </div>
 
-        {databaseOff ? (
+        {serverOff ? (
           <div onClick={toggleDatabaseOff} className="options">
             <p className="options__user-name">Demo</p>
             <img
@@ -29,7 +32,7 @@ export default function Header({ setDatabaseOff, databaseOff }) {
             />
           </div>
         ) : (
-          <div onClick={toggleDatabaseOff}  className="options">
+          <div onClick={toggleDatabaseOff} className="options">
             <p className="options__user-name">Demo with server</p>
             <img
               src={databaseIcon}

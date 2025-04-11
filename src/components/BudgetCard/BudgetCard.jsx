@@ -10,21 +10,198 @@ export default function BudgetCard({
   setBalance,
   clear,
   setClear,
+  serverOff,
 }) {
+  //=-=-=-=-=-=-=-=-=-=-=-=- Declarations -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   const baseUrl = import.meta.env.VITE_APP_URL;
 
+  //=-=-=-=-=-=-=-=-=-=-=-=- Functions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   useEffect(() => {
-    const fetchBalance = async () => {
-      try {
-        const response = await axios.get(`${baseUrl}budget`);
-        setBalance(response.data.slice(0, numMonths));
-      } catch (error) {
-        console.error("Error fetching budget:", error);
-      }
-    };
-    fetchBalance();
+    if (serverOff === false) {
+      const fetchBalance = async () => {
+        try {
+          const response = await axios.get(`${baseUrl}budget`);
+          setBalance(response.data.slice(0, numMonths));
+        } catch (error) {
+          console.error("Error fetching budget:", error);
+        }
+      };
+      fetchBalance();
+    } else {
+      setBalance([
+        {
+          month: "01",
+          year: 2025,
+          total_balance: "500.00",
+          previous_balance: "0.00",
+          total_income: "1700.00",
+         total_expenses: "1200.00",
+          salary: "1300.00",
+          extras: "400.00",
+          rent: "600.00",
+          food: "300.00",
+          utilities: "200.00",
+          transportation: "100.00",
+        },
+        {
+          month: "02",
+          year: 2025,
+          total_balance: "500.00",
+          previous_balance: "0.00",
+          total_income: "1700.00",
+         total_expenses: "1200.00",
+          salary: "1300.00",
+          extras: "400.00",
+          rent: "600.00",
+          food: "300.00",
+          utilities: "200.00",
+          transportation: "100.00",
+        },
+        {
+          month: "03",
+          year: 2025,
+          total_balance: "500.00",
+          previous_balance: "0.00",
+          total_income: "1700.00",
+         total_expenses: "1200.00",
+          salary: "1300.00",
+          extras: "400.00",
+          rent: "600.00",
+          food: "300.00",
+          utilities: "200.00",
+          transportation: "100.00",
+        },
+        {
+          month: "04",
+          year: 2025,
+          total_balance: "500.00",
+          previous_balance: "0.00",
+          total_income: "1700.00",
+         total_expenses: "1200.00",
+          salary: "1300.00",
+          extras: "400.00",
+          rent: "600.00",
+          food: "300.00",
+          utilities: "200.00",
+          transportation: "100.00",
+        },
+        {
+          month: "05",
+          year: 2025,
+          total_balance: "500.00",
+          previous_balance: "0.00",
+          total_income: "1700.00",
+         total_expenses: "1200.00",
+          salary: "1300.00",
+          extras: "400.00",
+          rent: "600.00",
+          food: "300.00",
+          utilities: "200.00",
+          transportation: "100.00",
+        },
+        {
+          month: "06",
+          year: 2025,
+          total_balance: "500.00",
+          previous_balance: "0.00",
+          total_income: "1700.00",
+         total_expenses: "1200.00",
+          salary: "1300.00",
+          extras: "400.00",
+          rent: "600.00",
+          food: "300.00",
+          utilities: "200.00",
+          transportation: "100.00",
+        },
+        {
+          month: "07",
+          year: 2025,
+          total_balance: "500.00",
+          previous_balance: "0.00",
+          total_income: "1700.00",
+         total_expenses: "1200.00",
+          salary: "1300.00",
+          extras: "400.00",
+          rent: "600.00",
+          food: "300.00",
+          utilities: "200.00",
+          transportation: "100.00",
+        },
+        {
+          month: "08",
+          year: 2025,
+          total_balance: "500.00",
+          previous_balance: "0.00",
+          total_income: "1700.00",
+         total_expenses: "1200.00",
+          salary: "1300.00",
+          extras: "400.00",
+          rent: "600.00",
+          food: "300.00",
+          utilities: "200.00",
+          transportation: "100.00",
+        },
+        {
+          month: "09",
+          year: 2025,
+          total_balance: "500.00",
+          previous_balance: "0.00",
+          total_income: "1700.00",
+         total_expenses: "1200.00",
+          salary: "1300.00",
+          extras: "400.00",
+          rent: "600.00",
+          food: "300.00",
+          utilities: "200.00",
+          transportation: "100.00",
+        },
+        {
+          month: "10",
+          year: 2025,
+          total_balance: "500.00",
+          previous_balance: "0.00",
+          total_income: "1700.00",
+         total_expenses: "1200.00",
+          salary: "1300.00",
+          extras: "400.00",
+          rent: "600.00",
+          food: "300.00",
+          utilities: "200.00",
+          transportation: "100.00",
+        },
+        {
+          month: "11",
+          year: 2025,
+          total_balance: "500.00",
+          previous_balance: "0.00",
+          total_income: "1700.00",
+         total_expenses: "1200.00",
+          salary: "1300.00",
+          extras: "400.00",
+          rent: "600.00",
+          food: "300.00",
+          utilities: "200.00",
+          transportation: "100.00",
+        },
+        {
+          month: "12",
+          year: 2025,
+          total_balance: "500.00",
+          previous_balance: "0.00",
+          total_income: "1700.00",
+         total_expenses: "1200.00",
+          salary: "1300.00",
+          extras: "400.00",
+          rent: "600.00",
+          food: "300.00",
+          utilities: "200.00",
+          transportation: "100.00",
+        },
+      ].slice(0, numMonths));
+    }
   }, [baseUrl, numMonths]);
 
+  //=-=-=-=-=-=-=-=-=-=-=- Return -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   return (
     <article className="card">
       <h2 className="card__title">{type}</h2>
@@ -37,7 +214,7 @@ export default function BudgetCard({
               id={`previous_balance${index}`}
               key={index}
             >
-              {balance[index].previous_balance}
+              {balance[index].previous_balance }
             </p>
           ))}
         </div>

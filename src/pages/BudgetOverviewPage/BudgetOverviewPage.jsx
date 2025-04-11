@@ -1,16 +1,16 @@
 import "./BudgetOverviewPage.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import BudgetOverview from "../../components/BudgetCard/BudgetCard";
+import BudgetCard from "../../components/BudgetCard/BudgetCard";
 import startIcon from "../../assets/icons/star.svg";
 import clearIcon from "../../assets/icons/delete_sweep.svg";
 
-export default function BudgetOverviewPage({setServerOff, serverOff}) {
+export default function BudgetOverviewPage({ setServerOff, serverOff }) {
   // -=-=-=-=-=-=-=-=-=-=- Declarations -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   const baseUrl = import.meta.env.VITE_APP_URL;
   const giphyUrl = import.meta.env.VITE_GIPHY_URL;
   const giphyApiKey = import.meta.env.VITE_GIPHY_API_KEY;
-  const [gifSection, setGifSection] = useState([false, ""]);//false means that it will not show. Empty string for the query of the api call
+  const [gifSection, setGifSection] = useState([false, ""]); //false means that it will not show. Empty string for the query of the api call
   const months = [
     "Jan",
     "Feb",
@@ -32,10 +32,8 @@ export default function BudgetOverviewPage({setServerOff, serverOff}) {
   const [index, setIndex] = useState(0);
   const [gif, setGif] = useState(null);
   const [clear, setClear] = useState(false);
-// -=-=-=-=-=-=-=-=-=-=- Functions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-//-=-=- Calculate the inputs
-  const inputTagRetrieve = async (index) => {
+  // -=-=-=-=-=-=-=-=-=-=- Functions -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  const inputTagRetrieve = async (index) => {  //-=-=- Calculate the inputs
     const newData = {};
     let inputs = [];
     let prev_balance = 0.0;
@@ -94,31 +92,53 @@ export default function BudgetOverviewPage({setServerOff, serverOff}) {
     setShouldSendRequest(true);
   };
 
-  //-=-=- Calculate the inputs
+  function SetGifVariable(balance) {
+    if (balance[numMonths - 1].total_balance < -100) {
+      setGifSection([true, "bankruptcy"]);
+    } else if (balance[numMonths - 1].total_balance < 10) {
+      setGifSection([true, "poor"]);
+    } else if (balance[numMonths - 1].total_balance < 100) {
+      setGifSection([true, "almost+broke"]);
+    } else if (balance[numMonths - 1].total_balance < 2000) {
+      setGifSection([true, "money+shopping"]);
+    } else {
+      setGifSection([true, "happy+money+rich"]);
+    }
+  }
+
+  //-=-=- Change data in the server
   useEffect(() => {
-    if (shouldSendRequest && formData) {
-      const sendPutRequest = async () => {
-        try {
-          await axios.put(`${baseUrl}budget/${index}`, formData);
-          setShouldSendRequest(false);
-          const response = await axios.get(`${baseUrl}budget`);
-          setBalance(response.data.slice(0, numMonths));
-          if (balance[numMonths - 1].total_balance < -100) {
-            setGifSection([true, "bankruptcy"]);
-          } else if (balance[numMonths - 1].total_balance < 10) {
-            setGifSection([true, "poor"]);
-          } else if (balance[numMonths - 1].total_balance < 100) {
-            setGifSection([true, "almost+broke"]);
-          } else if (balance[numMonths - 1].total_balance < 2000) {
-            setGifSection([true, "money+shopping"]);
-          } else {
-            setGifSection([true, "happy+money+rich"]);
+    if (formData) {
+      if (serverOff === false  && shouldSendRequest === true) {
+        const sendPutRequest = async () => {
+          try {
+            await axios.put(`${baseUrl}budget/${index}`, formData);
+            setShouldSendRequest(false);
+            const response = await axios.get(`${baseUrl}budget`);
+            setBalance(response.data.slice(0, numMonths));
+            if (balance[numMonths - 1].total_balance < -100) {
+              setGifSection([true, "bankruptcy"]);
+            } else if (balance[numMonths - 1].total_balance < 10) {
+              setGifSection([true, "poor"]);
+            } else if (balance[numMonths - 1].total_balance < 100) {
+              setGifSection([true, "almost+broke"]);
+            } else if (balance[numMonths - 1].total_balance < 2000) {
+              setGifSection([true, "money+shopping"]);
+            } else {
+              setGifSection([true, "happy+money+rich"]);
+            }
+          } catch (error) {
+            console.error("Error updating budget:", error);
           }
-        } catch (error) {
-          console.error("Error updating budget:", error);
-        }
-      };
-      sendPutRequest();
+        };
+        sendPutRequest(balance);
+      } else {
+        Object.entries(formData).forEach(([key, value]) => {
+          const numberValue = parseFloat(value);
+          formData[key] = numberValue.toFixed(2);
+          setShouldSendRequest(false);
+        });
+      }
     }
   }, [formData, shouldSendRequest, baseUrl, numMonths, index]);
 
@@ -140,7 +160,6 @@ export default function BudgetOverviewPage({setServerOff, serverOff}) {
           alert("Sorry we can no show a gif in this moment");
         }
       };
-
       sendGiphyRequest();
     }
   }, [gifSection, giphyApiKey, numMonths]);
@@ -160,7 +179,7 @@ export default function BudgetOverviewPage({setServerOff, serverOff}) {
     return <h2>Loading...</h2>;
   }
 
-// -=-=-=-=-=-=-=-=-=-=- Return -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  // -=-=-=-=-=-=-=-=-=-=- Return -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   return (
     <>
       <div className="view">
@@ -196,7 +215,7 @@ export default function BudgetOverviewPage({setServerOff, serverOff}) {
         ))}
       </div>
 
-      <BudgetOverview
+      <BudgetCard
         setBalance={setBalance}
         balance={balance}
         numMonths={numMonths}
@@ -205,7 +224,7 @@ export default function BudgetOverviewPage({setServerOff, serverOff}) {
         setClear={setClear}
         serverOff={serverOff}
       />
-      <BudgetOverview
+      <BudgetCard
         setBalance={setBalance}
         balance={balance}
         numMonths={numMonths}
@@ -214,7 +233,7 @@ export default function BudgetOverviewPage({setServerOff, serverOff}) {
         setClear={setClear}
         serverOff={serverOff}
       />
-      <BudgetOverview
+      <BudgetCard
         setBalance={setBalance}
         balance={balance}
         numMonths={numMonths}
