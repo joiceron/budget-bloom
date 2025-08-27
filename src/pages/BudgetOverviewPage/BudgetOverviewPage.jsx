@@ -143,7 +143,7 @@ export default function BudgetOverviewPage({ setServerOff, serverOff }) {
         });
         if (formData.total_balance < -100) {
           setGifSection([true, "bankruptcy"]);
-        } else if (formData.total_balance< 10) {
+        } else if (formData.total_balance < 10) {
           setGifSection([true, "poor"]);
         } else if (formData.total_balance < 100) {
           setGifSection([true, "almost+broke"]);
@@ -256,6 +256,21 @@ export default function BudgetOverviewPage({ setServerOff, serverOff }) {
         serverOff={serverOff}
       />
 
+      <div className="acctions">
+        <button type="reset" onClick={handleClear} className="acctions__button">
+          Clear
+          <img src={clearIcon} alt="trash bin icon for the button Clean" />
+        </button>
+        <button
+          className="acctions__button"
+          type="submit"
+          onClick={handleCalculate}
+        >
+          Calculate
+          <img src={startIcon} alt="star icon for the button Calculate" />
+        </button>
+      </div>
+
       {gif ? (
         <section className="gif-section">
           <p className="gif-section__text">
@@ -267,21 +282,6 @@ export default function BudgetOverviewPage({ setServerOff, serverOff }) {
       ) : (
         ""
       )}
-
-      <div className="acctions">
-        <button type="reset" onClick={handleClear} className="acctions__button">
-          Clear
-          <img src={clearIcon} alt="trash bin icon for the button Clean" />
-        </button>
-        <button
-          className="acctions__button"
-          type="submit"
-          onClick={handleCalculate}
-        >
-          Calculate{" "}
-          <img src={startIcon} alt="star icon for the button Calculate" />
-        </button>
-      </div>
     </>
   );
 }

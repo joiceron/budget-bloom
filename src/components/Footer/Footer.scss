@@ -9,6 +9,10 @@
     margin: 2rem 0 0.5rem 0;
     @include padding-components;
 
+    @include desktop{
+      padding-top: 2rem;
+    }
+
     &--bold {
       font-weight: 700;
     }

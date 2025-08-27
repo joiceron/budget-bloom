@@ -24,7 +24,6 @@ export default function Header({ serverOff, setServerOff }) {
 
         {serverOff ? (
           <div onClick={toggleDatabaseOff} className="options">
-            <p className="options__text">Local memory</p>
             <img
               src={databaseOffIcon}
               alt="Working without installing a server"
