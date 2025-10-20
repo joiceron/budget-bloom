@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <p className="footer__instructions">
-        <span className="footer__instructions--bold">Note: </span>If you’re using local memory, simply insert a number and the entire row
+        <span className="footer__instructions--bold">Intructions: </span>If you’re using local memory, simply insert a number and the entire row
         will auto-fill. To edit a single value, click “Fix” to enable variable
         cost mode and adjust individual inputs. Press “Calculate” to see totals
         or “Clear” to reset everything. Refreshing the page will load sample

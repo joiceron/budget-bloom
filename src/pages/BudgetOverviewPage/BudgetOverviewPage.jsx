@@ -131,7 +131,7 @@ export default function BudgetOverviewPage({ setServerOff, serverOff }) {
           } catch (error) {
             console.error("Error updating budget:", error);
             alert(
-              "Please make sure to connect to the database: https://github.com/joiceron/budget-bloom-server or click in Demo"
+              "Please make sure to connect to the database: https://github.com/joiceron/budget-bloom-server or click in Demo or refresh the page to work with local memory"
             );
           }
         };
