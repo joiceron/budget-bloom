@@ -1,5 +1,5 @@
 import "./Header.scss";
-import logo from "../../assets/logo/logo.svg";
+import logo from "/logo.svg";
 import databaseIcon from "../../assets/icons/database.svg";
 import databaseOffIcon from "../../assets/icons/database_off.svg";
 
