@@ -141,16 +141,18 @@ export default function BudgetOverviewPage({ setServerOff, serverOff }) {
           const numberValue = parseFloat(value);
           formData[key] = numberValue.toFixed(2);
         });
-        if (formData.total_balance < -100) {
-          setGifSection([true, "bankruptcy"]);
-        } else if (formData.total_balance < 10) {
-          setGifSection([true, "poor"]);
-        } else if (formData.total_balance < 100) {
-          setGifSection([true, "almost+broke"]);
-        } else if (formData.total_balance < 4000) {
-          setGifSection([true, "money+shopping"]);
-        } else {
-          setGifSection([true, "happy+money+rich"]);
+        if (formData.total_balance != undefined) {
+          if (formData.total_balance < -100) {
+            setGifSection([true, "bankruptcy"]);
+          } else if (formData.total_balance < 10) {
+            setGifSection([true, "poor"]);
+          } else if (formData.total_balance < 100) {
+            setGifSection([true, "almost+broke"]);
+          } else if (formData.total_balance < 4000) {
+            setGifSection([true, "money+shopping"]);
+          } else {
+            setGifSection([true, "happy+money+rich"]);
+          }
         }
       }
     }
@@ -176,7 +178,7 @@ export default function BudgetOverviewPage({ setServerOff, serverOff }) {
       };
       sendGiphyRequest();
     }
-  }, [gifSection, giphyApiKey, numMonths]);
+  }, [gifSection, giphyApiKey]);
 
   const handleCalculate = async () => {
     for (let i = 0; i < numMonths; i++) {
@@ -187,6 +189,8 @@ export default function BudgetOverviewPage({ setServerOff, serverOff }) {
 
   const handleClear = async () => {
     setClear(true);
+    setGif(null);
+    setGifSection([false, ""]);
   };
 
   if (!balance) {

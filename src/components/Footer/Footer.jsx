@@ -11,15 +11,15 @@ export default function Footer() {
         cost mode and adjust individual inputs. Press “Calculate” to see totals
         or “Clear” to reset everything. Refreshing the page will load sample
         values unless you’re connected to the backend. If you downloaded the
-        server and have the database from:
-        <a
+        server and have the database from: 
+        &nbsp; <a
         className="footer__instructions--link"
           target="_blank"
           href="https://github.com/joiceron/budget-bloom-server"
         >
-          GitHub
+          GitHub 
         </a>
-        set up, your data will be saved. Just make sure “Demo with Server” is
+        &nbsp; set up, your data will be saved. Just make sure “Demo with Server” is
         active. You can switch the number of visible months by clicking above,
         but doing so will reset any unsaved data.
       </p>
